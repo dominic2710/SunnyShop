@@ -1,0 +1,241 @@
+﻿<Window x:Class="SellManagement.DesktopClient.Views.SearchProductView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SellManagement.DesktopClient.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:userControl="clr-namespace:SellManagement.DesktopClient.UserControls"
+        xmlns:viewModel="clr-namespace:SellManagement.DesktopClient.ViewModels"
+        mc:Ignorable="d"
+        Title="Chọn sản phẩm" Height="700" Width="1000"
+        Background="#FF252525"
+        Foreground="White"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded"
+        ResizeMode="CanMinimize">
+    <Window.DataContext>
+        <viewModel:SearchProductViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="DataGridCell"
+               BasedOn="{StaticResource MaterialDesignDataGridCell}">
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="FocusVisualStyle"
+                    Value="{x:Null}" />
+            <Style.Triggers>
+                <Trigger Property="IsKeyboardFocusWithin"
+                         Value="True">
+                    <Setter Property="BorderBrush"
+                            Value="Transparent" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <CollectionViewSource x:Key="ListOfProductData"
+                              Source="{Binding ListOfProductFiltered, UpdateSourceTrigger=PropertyChanged}" />
+        <CollectionViewSource x:Key="ListOfCategoryData"
+                              Source="{Binding ListOfCategoryForFilter, UpdateSourceTrigger=PropertyChanged}" />
+        <CollectionViewSource x:Key="ListOfTradeMarkData"
+                              Source="{Binding ListOfTradeMarkForFilter, UpdateSourceTrigger=PropertyChanged}" />
+        <CollectionViewSource x:Key="ListOfOriginData"
+                              Source="{Binding ListOfOriginForFilter, UpdateSourceTrigger=PropertyChanged}" />
+    </Window.Resources>
+    <Grid>
+        <DockPanel Margin="10"
+               LastChildFill="True">
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Height="40"
+                    DockPanel.Dock="Bottom">
+            <Button Width="150"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Command="{Binding ConfirmedCommand}"
+                    Foreground="Green"
+                    BorderBrush="Green">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Check"
+                                                 VerticalAlignment="Center"
+                                                 Foreground="Green" />
+                        <TextBlock Text="Xác nhận"
+                                   Foreground="Green"
+                                   Margin="5 0 0 0" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Width="100"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Command="{Binding CancelCommand}"
+                    Foreground="#ee5253"
+                    BorderBrush="#ee5253"
+                    Margin="10 0 0 0">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Close"
+                                                 VerticalAlignment="Center" />
+                        <TextBlock Text="Hủy"
+                                   Margin="5 0 0 0" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Border CornerRadius="3"
+                    Background="#FF303030"
+                    Margin="0 0 10 10">
+                <StackPanel Margin="10">
+                    <TextBlock Text="Tìm kiếm"
+                               FontSize="17"
+                               Margin="0 0 0 0"
+                               Foreground="#FF2196F3" />
+                    <TextBox materialDesign:HintAssist.Hint="Tìm theo tên"
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                             Text="{Binding FilterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="15"
+                             Margin="5 5 0 0" />
+                    <TextBlock Text="Phân loại"
+                               FontSize="17"
+                               Margin="0 15 0 0"
+                               Foreground="#FF2196F3" />
+                    <ItemsControl Margin="5 0 0 0"
+                                  ItemsSource="{Binding Source={StaticResource ListOfCategoryData}, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Height="25">
+                                    <CheckBox FocusVisualStyle="{x:Null}"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Name="PART_ChkCategory"
+                                              Command="{Binding DataContext.CheckCategoryCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                              CommandParameter="{Binding ElementName=PART_ChkCategory}"
+                                              Content="{Binding DisplayName}"
+                                              Tag="{Binding DisplayName}"
+                                              FontSize="15"
+                                              VerticalContentAlignment="Bottom" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="Thương hiệu"
+                               FontSize="17"
+                               Margin="0 15 0 0"
+                               Foreground="#FF2196F3" />
+                    <ItemsControl Margin="5 0 0 0"
+                                  ItemsSource="{Binding Source={StaticResource ListOfTradeMarkData}, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Height="25">
+                                    <CheckBox FocusVisualStyle="{x:Null}"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Name="PART_ChkTradeMark"
+                                              Command="{Binding DataContext.CheckTradeMarkCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                              CommandParameter="{Binding ElementName=PART_ChkTradeMark}"
+                                              Content="{Binding DisplayName}"
+                                              Tag="{Binding DisplayName}"
+                                              FontSize="15"
+                                              VerticalContentAlignment="Bottom" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Text="Xuất xứ"
+                               FontSize="17"
+                               Margin="0 15 0 0"
+                               Foreground="#FF2196F3" />
+                    <ItemsControl Margin="5 0 0 0"
+                                  ItemsSource="{Binding Source={StaticResource ListOfOriginData}, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            Height="25">
+                                    <CheckBox FocusVisualStyle="{x:Null}"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              Name="PART_ChkOrigin"
+                                              Command="{Binding DataContext.CheckOriginCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                              CommandParameter="{Binding ElementName=PART_ChkOrigin}"
+                                              Content="{Binding DisplayName}"
+                                              Tag="{Binding DisplayName}"
+                                              FontSize="15"
+                                              VerticalContentAlignment="Bottom" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+            <DataGrid CanUserSortColumns="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserResizeRows="False"
+                      Margin="0 0 0 10"
+                      ItemsSource="{Binding Source={StaticResource ListOfProductData }}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectionMode="Extended"
+                      SelectionUnit="FullRow"
+                      FontSize="15"
+                      SelectedItem="{Binding SelectedProduct, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Grid.Column="1"
+                      FrozenColumnCount="3">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Binding="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Mã SP"
+                                        Binding="{Binding ProductCd}"/>
+                    <DataGridTextColumn Header="Tên SP"
+                                        Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Loại hàng"
+                                        Binding="{Binding CategoryName}" />
+                    <DataGridTextColumn Header="Thương hiệu"
+                                        Binding="{Binding TradeMarkName}" />
+                    <DataGridTextColumn Header="Xuất xứ"
+                                        Binding="{Binding OriginName}" />
+                    <DataGridTextColumn Header="Giá nhập"
+                                        Binding="{Binding CostPrice, StringFormat={}{0:N0}}" />
+                    <DataGridTextColumn Header="Giá bán"
+                                        Binding="{Binding SoldPrice, StringFormat={}{0:N0}}" />
+                </DataGrid.Columns>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow"
+                           BasedOn="{StaticResource MaterialDesignDataGridRow}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridRow">
+                                    <Border  Background="{TemplateBinding Background}"
+                                             BorderBrush="{TemplateBinding BorderBrush}"
+                                             BorderThickness="{TemplateBinding BorderThickness}"
+                                             SnapsToDevicePixels="True">
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftDoubleClick"
+                                                          Command="{Binding DataContext.SelectAndReturnProductCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                            <KeyBinding Key="Space"
+                                                        Command="{Binding DataContext.SelectProductCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" />
+                                        </Border.InputBindings>
+                                        <SelectiveScrollingGrid>
+                                            <DataGridCellsPresenter ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                        </SelectiveScrollingGrid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+        <userControl:BackdropUserControl Visibility="{Binding IsShowBackdrop}"/>
+    </Grid>
+</Window>

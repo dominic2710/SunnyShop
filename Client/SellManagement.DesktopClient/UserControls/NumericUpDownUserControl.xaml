@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="SellManagement.DesktopClient.UserControls.NumericUpDownUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SellManagement.DesktopClient.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="100">
+    <DockPanel >
+        <Button Width="24"
+                Height="24"
+                VerticalAlignment="Center"
+                IsTabStop="False"
+                Cursor="Hand"
+                DockPanel.Dock="Left"
+                Name="PART_Minus"
+                Click="PART_Minus_Click"
+                FocusVisualStyle="{x:Null}">
+            <Button.Style>
+                <Style TargetType="Button"
+                       BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    <Setter Property="Padding"
+                            Value="0" />
+                    <Setter Property="BorderBrush"
+                            Value="Transparent" />
+                    <Setter Property="BorderThickness"
+                            Value="0" />
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </Style>
+            </Button.Style>
+            <Button.Content>
+                <materialDesign:PackIcon Kind="Minus"
+                                         Width="16"
+                                         Height="16"
+                                         Foreground="Green"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center" />
+            </Button.Content>
+        </Button>
+        <Button Width="24"
+                Height="24"
+                VerticalAlignment="Center"
+                IsTabStop="False"
+                Cursor="Hand"
+                DockPanel.Dock="Right"
+                Name="PART_Plus"
+                Click="PART_Plus_Click"
+                FocusVisualStyle="{x:Null}">
+            <Button.Style>
+                <Style TargetType="Button"
+                       BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    <Setter Property="Padding"
+                            Value="0" />
+                    <Setter Property="BorderBrush"
+                            Value="Transparent" />
+                    <Setter Property="BorderThickness"
+                            Value="0" />
+                    <Setter Property="Background"
+                            Value="Transparent" />
+                </Style>
+            </Button.Style>
+            <Button.Content>
+                <materialDesign:PackIcon Kind="Add"
+                                         Width="16"
+                                         Height="16"
+                                         Foreground="Green"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Center" />
+            </Button.Content>
+        </Button>
+        <TextBox Margin="5 0 5 0"
+                 VerticalAlignment="Center"
+                 Name="PART_Value"
+                 HorizontalContentAlignment="Right"
+                 TextChanged="PART_Value_TextChanged"
+                 GotFocus="PART_Value_GotFocus"/>
+    </DockPanel>
+</UserControl>

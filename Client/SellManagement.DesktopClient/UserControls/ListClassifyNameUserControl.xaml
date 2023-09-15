@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="SellManagement.DesktopClient.UserControls.ListClassifyNameUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SellManagement.DesktopClient.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModel="clr-namespace:SellManagement.DesktopClient.ViewModels"
+             xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:userControl="clr-namespace:SellManagement.DesktopClient.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewModel:ListOfClassifyNameViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <DockPanel Margin="20 15 20 15" LastChildFill="True">
+            <StackPanel DockPanel.Dock="Top">
+                <TextBlock Text="Danh sách phân loại" FontSize="20" Foreground="#FF2196F3"/>
+                <ComboBox ItemsSource="{Binding ListOfClassifyGroup}" HorizontalAlignment="Left"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="GroupId"
+                          SelectedItem="{Binding SelectedClassifyGroup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Width="230"
+                          Foreground="White"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          materialDesign:HintAssist.Hint="Phân loại" 
+                          Margin="0 20 0 0"
+                          Name="PART_GroupId"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                <Button Width="100"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        BorderBrush="#FF2196F3"
+                        Command="{Binding SaveCommand}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ContentSaveOutline"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="#FF2196F3"/>
+                            <TextBlock Text="Lưu"
+                                       Margin="5 0 0 0"
+                                       Foreground="#FF2196F3"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Width="120"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                        BorderBrush="#FF2196F3"
+                        Command="{Binding ClearAllCommand}"
+                        Margin="15 0 0 0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="NotificationClearAll"
+                                                     VerticalAlignment="Center"
+                                                     Foreground="#FF2196F3" />
+                            <TextBlock Text="Nhập lại"
+                                       Margin="5 0 0 0"
+                                       Foreground="#FF2196F3" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <DataGrid ItemsSource="{Binding ListOfClassifyName}"
+                      CanUserSortColumns="True"
+                      CanUserAddRows="True"
+                      CanUserDeleteRows="True"
+                      AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      FontSize="15"
+                      Width="600"
+                      HorizontalAlignment="Left"
+                      VerticalScrollBarVisibility="Auto"
+                      Margin="0 20 0 20">
+                <DataGrid.InputBindings>
+                    <KeyBinding Key="Delete"
+                                Command="{Binding DeleteClassifyNameCommand}" />
+                </DataGrid.InputBindings>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell" BasedOn="{StaticResource MaterialDesignDataGridCell}">
+                        <Setter Property="BorderThickness" Value="0"/>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã" x:Name="COL_Code"
+                                        Binding="{Binding Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Tên"
+                                        Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <local:BackdropUserControl Visibility="{Binding IsShowBackdrop}"/>
+    </Grid>
+</UserControl>

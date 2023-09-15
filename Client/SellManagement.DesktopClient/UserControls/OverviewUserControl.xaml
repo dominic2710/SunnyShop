@@ -1,0 +1,248 @@
+﻿<UserControl x:Class="SellManagement.DesktopClient.UserControls.OverviewUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SellManagement.DesktopClient.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModel="clr-namespace:SellManagement.DesktopClient.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontSize="15" IsVisibleChanged="UserControl_IsVisibleChanged">
+    <UserControl.DataContext>
+        <viewModel:OverviewViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="20 15 20 15">
+                <materialDesign:Card Width="Auto" Height="120">
+                    <StackPanel Margin="10" Background="Transparent">
+                        <TextBlock Text="HÔM NAY" Foreground="#FF2196F3" FontWeight="Medium"/>
+                        <Rectangle Fill="LightGray" Width="Auto" Height="0.5" Margin="0 5 0 5"/>
+                        <UniformGrid Background="Transparent" 
+                                     Rows="1" Columns="3" HorizontalAlignment="Stretch">
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="60 0 0 0">
+                                    <Border CornerRadius="45" Background="#FF2196F3" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="Dollar" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding TodaySaleCount, StringFormat={}{0:N0} đơn hàng}" FontSize="14"/>
+                                        <TextBlock Text="{Binding TodaySaleCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#FF2196F3"/>
+                                        <TextBlock Text="Bán hàng" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="60 0 0 0">
+                                    <Border CornerRadius="45" Background="#e67e22" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="ReplyAll" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                            <materialDesign:PackIcon.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform Angle="180"/>
+                                                    <TranslateTransform/>
+                                                </TransformGroup>
+                                            </materialDesign:PackIcon.RenderTransform>
+                                        </materialDesign:PackIcon>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding TodaySaleOrderCount, StringFormat={}{0:N0} đơn hàng}" FontSize="14"/>
+                                        <TextBlock Text="{Binding TodaySaleOrderCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#e67e22"/>
+                                        <TextBlock Text="Nhận đặt hàng" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="60 0 0 0">
+                                    <Border CornerRadius="45" Background="#e74c3c" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="BookCancelOutline" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding TodaySaleOrderCancelCount, StringFormat={}{0:N0} đơn hàng}" FontSize="14"/>
+                                        <TextBlock Text="{Binding TodaySaleOrderCancelCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#e74c3c"/>
+                                        <TextBlock Text="Đã hủy" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </UniformGrid>
+                    </StackPanel>
+                </materialDesign:Card>
+                <materialDesign:Card Width="Auto" Height="120"
+                                     Margin="0 25 0 0">
+                    <StackPanel Margin="10" Background="Transparent">
+                        <TextBlock Text="THÁNG NÀY" Foreground="#FF2196F3" FontWeight="Medium"/>
+                        <Rectangle Fill="LightGray" Width="Auto" Height="0.5" Margin="0 5 0 5"/>
+                        <UniformGrid Background="Transparent"
+                                     Rows="1" Columns="4">
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="20 0 0 0">
+                                    <Border CornerRadius="45" Background="#FF2196F3" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="Dollar" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding ThisMonthSaleCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#FF2196F3"/>
+                                        <TextBlock Text="Doanh số" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="20 0 0 0">
+                                    <Border CornerRadius="45" Background="#e67e22" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="Cash" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding ThisMonthPurchaseCash, StringFormat={}{0:N0}}" FontSize="24" 
+                                                   Foreground="#e67e22"/>
+                                        <TextBlock Text="Mua hàng" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="20 0 0 0">
+                                    <Border CornerRadius="45" Background="#44bd32" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="Cash" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding ThisMonthSaleProfit, StringFormat={}{0:N0}}" FontSize="24" Foreground="#44bd32"/>
+                                        <TextBlock Text="Lợi nhuận" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="20 0 0 0">
+                                    <Border CornerRadius="45" Background="#f1c40f" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="SemanticWeb" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding Instock, StringFormat={}{0:N0} sản phẩm}" FontSize="14"/>
+                                        <TextBlock Text="{Binding InstockValue, StringFormat={}{0:N0}}" FontSize="24" Foreground="#f1c40f"/>
+                                        <TextBlock Text="Tồn kho" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </UniformGrid>
+                    </StackPanel>
+                </materialDesign:Card>
+                <materialDesign:Card Width="Auto" Height="120"
+                                     Margin="0 25 0 0">
+                    <StackPanel Margin="10" Background="Transparent">
+                        <TextBlock Text="CÔNG NỢ" Foreground="#FF2196F3" FontWeight="Medium"/>
+                        <Rectangle Fill="LightGray" Width="Auto" Height="0.5" Margin="0 5 0 5"/>
+                        <UniformGrid Background="Transparent"
+                                     Rows="1" Columns="3">
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="60 0 0 0">
+                                    <Border CornerRadius="45" Background="#FF2196F3" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="CashPlus" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding PaymentCount, StringFormat={}{0:N0} đơn hàng}" FontSize="14"/>
+                                        <TextBlock Text="{Binding PaymentCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#FF2196F3"/>
+                                        <TextBlock Text="Chưa thanh toán" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="60 0 0 0">
+                                    <Border CornerRadius="45" Background="#e67e22" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="CashMultiple" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding ForControlCount, StringFormat={}{0:N0} đơn hàng}" FontSize="14"/>
+                                        <TextBlock Text="{Binding ForControlCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#e67e22"/>
+                                        <TextBlock Text="Chưa đối soát" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Background="Transparent">
+                                <StackPanel Orientation="Horizontal"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="60 0 0 0">
+                                    <Border CornerRadius="45" Background="#e74c3c" Width="48" Height="48">
+                                        <materialDesign:PackIcon Kind="CashMinus" FontSize="30" Width="32" Height="32"
+                                                                 VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                    <StackPanel Margin="10 0 0 0">
+                                        <TextBlock Text="{Binding ExpenseCount, StringFormat={}{0:N0} đơn hàng}" FontSize="14"/>
+                                        <TextBlock Text="{Binding ExpenseCash, StringFormat={}{0:N0}}" FontSize="24" Foreground="#e74c3c"/>
+                                        <TextBlock Text="Chưa chi trả" FontSize="14"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </UniformGrid>
+                    </StackPanel>
+                </materialDesign:Card>
+                <materialDesign:Card Width="Auto" Height="300"
+                                     Margin="0 25 0 0">
+                    <StackPanel Margin="10" Background="Transparent">
+                        <TextBlock Text="DOANH SỐ THEO THÁNG" Foreground="#FF2196F3" FontWeight="Medium"/>
+                        <Rectangle Fill="LightGray" Width="Auto" Height="0.5" Margin="0 5 0 5"/>
+                        <TextBlock Text="Chưa có gì để hiển thị"/>
+                    </StackPanel>
+                </materialDesign:Card>
+            </StackPanel>
+            <materialDesign:Card Grid.Column="1" Margin="0 15 20 15">
+                <StackPanel Margin="10">
+                    <TextBlock Text="HOẠT ĐỘNG GẦN ĐÂY" Foreground="#FF2196F3" FontWeight="Medium"/>
+                    <Rectangle Fill="LightGray" Width="Auto" Height="0.5" Margin="0 5 0 5"/>
+                </StackPanel>
+            </materialDesign:Card>
+        </Grid>
+    </Grid>
+</UserControl>

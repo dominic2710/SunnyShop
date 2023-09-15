@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="SellManagement.DesktopClient.UserControls.BackdropUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SellManagement.DesktopClient.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Transparent">
+    <Grid Background="Transparent">
+        <Grid Background="Gray" Grid.RowSpan="2" Grid.ColumnSpan="2" Opacity="0.2"/>
+        <Grid Background="Transparent" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <ProgressBar Style="{StaticResource MaterialDesignCircularProgressBar}"
+                             Value="0"
+                             IsIndeterminate="True"
+                             Foreground="#FF2196F3" HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Name="PART_LoginProgessbar"
+                             Width="100" Height="100"/>
+            <TextBlock Text="Đang xử lý" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Foreground="#FF2196F3" Margin="0 150 0 0" FontSize="20"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

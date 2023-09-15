@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20211106050911_InitialCreate.cs" />
+    <Compile Remove="Migrations\20211106050911_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20211106053206_M1.cs" />
+    <Compile Remove="Migrations\20211106053206_M1.Designer.cs" />
+    <Compile Remove="Migrations\20211107060119_M2.cs" />
+    <Compile Remove="Migrations\20211107060119_M2.Designer.cs" />
+    <Compile Remove="Migrations\20211107062604_M4.cs" />
+    <Compile Remove="Migrations\20211107062604_M4.Designer.cs" />
+    <Compile Remove="Migrations\20211117052021_M5.cs" />
+    <Compile Remove="Migrations\20211117052021_M5.Designer.cs" />
+    <Compile Remove="Migrations\20211122170130_M8.cs" />
+    <Compile Remove="Migrations\20211122170130_M8.Designer.cs" />
+    <Compile Remove="Migrations\20211128154244_M9.cs" />
+    <Compile Remove="Migrations\20211128154244_M9.Designer.cs" />
+    <Compile Remove="Migrations\20211206165916_M10.cs" />
+    <Compile Remove="Migrations\20211206165916_M10.Designer.cs" />
+    <Compile Remove="Migrations\20211207163623_M11.cs" />
+    <Compile Remove="Migrations\20211207163623_M11.Designer.cs" />
+    <Compile Remove="Migrations\20211210174237_M12.cs" />
+    <Compile Remove="Migrations\20211210174237_M12.Designer.cs" />
+    <Compile Remove="Migrations\20211214164321_M13.cs" />
+    <Compile Remove="Migrations\20211214164321_M13.Designer.cs" />
+    <Compile Remove="Migrations\20211217143650_M14.cs" />
+    <Compile Remove="Migrations\20211217143650_M14.Designer.cs" />
+    <Compile Remove="Migrations\20220222154220_M15.cs" />
+    <Compile Remove="Migrations\20220222154220_M15.Designer.cs" />
+    <Compile Remove="Migrations\20220312091506_NEW_INIT.cs" />
+    <Compile Remove="Migrations\20220312091506_NEW_INIT.Designer.cs" />
+    <Compile Remove="Migrations\20220312095050_NEW_INIT.cs" />
+    <Compile Remove="Migrations\20220312095050_NEW_INIT.Designer.cs" />
+    <Compile Remove="Migrations\20220314170228_M16.cs" />
+    <Compile Remove="Migrations\20220314170228_M16.Designer.cs" />
+    <Compile Remove="Migrations\20220315080217_M20.cs" />
+    <Compile Remove="Migrations\20220315080217_M20.Designer.cs" />
+    <Compile Remove="Migrations\20220316152546_M21.cs" />
+    <Compile Remove="Migrations\20220316152546_M21.Designer.cs" />
+    <Compile Remove="Migrations\20220317164533_init.cs" />
+    <Compile Remove="Migrations\20220317164533_init.Designer.cs" />
+    <Compile Remove="Migrations\20220317164651_init.cs" />
+    <Compile Remove="Migrations\20220317164651_init.Designer.cs" />
+    <Compile Remove="Migrations\20220317164734_init.cs" />
+    <Compile Remove="Migrations\20220317164734_init.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+</Project>

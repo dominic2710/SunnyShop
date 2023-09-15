@@ -1,0 +1,205 @@
+Start
+Start
+Add connecttion Data Source=(localdb)\mssqllocaldb;Initial Catalog=SellManagementDB_2;Integrated Security=True
+End
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+LoginController init
+LoginController end init
+LoginController Authenticate
+UserService Authenticate
+admin
+SellManagement.Api.Entities.TblUser
+LoginController Authenticate end
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+LoginController init
+LoginController end init
+LoginController Authenticate
+UserService Authenticate
+admin
+SellManagement.Api.Entities.TblUser
+LoginController Authenticate end
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+Start
+Add connecttion Data Source=(localdb)\mssqllocaldb;Initial Catalog=SellManagementDB_2;Integrated Security=True
+End
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+LoginController init
+LoginController end init
+LoginController Authenticate
+UserService Authenticate
+admin
+SellManagement.Api.Entities.TblUser
+LoginController Authenticate end
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+LoginController init
+LoginController end init
+LoginController Authenticate
+UserService Authenticate
+admin
+SellManagement.Api.Entities.TblUser
+LoginController Authenticate end
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+LoginController init
+LoginController end init
+LoginController Authenticate
+UserService Authenticate
+admin
+SellManagement.Api.Entities.TblUser
+LoginController Authenticate end
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+Start
+Add connecttion Data Source=(localdb)\mssqllocaldb;Initial Catalog=SellManagementDB_2;Integrated Security=True
+End
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+LoginController init
+LoginController end init
+LoginController Authenticate
+UserService Authenticate
+admin
+SellManagement.Api.Entities.TblUser
+LoginController Authenticate end
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext
+UserService init
+UserService end
+Microsoft.AspNetCore.Http.DefaultHttpContext

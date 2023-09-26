@@ -73,7 +73,20 @@ namespace SellManagement.DesktopClient.ViewModels
 
             }
 
+            OnPropertyChanged("ShowFilterCategoryIndicator");
+            OnPropertyChanged("HideFilterCategoryIndicator");
+            OnPropertyChanged("ShowFilterTradeMarkIndicator");
+            OnPropertyChanged("HideFilterTradeMarkIndicator");
             OnPropertyChanged("ListOfProductFiltered");
+        }
+
+        bool IsCheckedAll(ObservableCollection<FilterItemModel> targetList)
+        {
+            var item = targetList
+                        .Where(x => x.IsChecked == false)
+                        .Where(x => x.DisplayName != ShareContanst.SELECT_ALL)
+                        .FirstOrDefault();
+            return item == null;
         }
 
         void AddProductAsync()
@@ -331,6 +344,27 @@ namespace SellManagement.DesktopClient.ViewModels
                 }
             }
         }
+
+        public Visibility ShowFilterCategoryIndicator
+        {
+            get { return IsCheckedAll(ListOfCategoryForFilter) ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public Visibility HideFilterCategoryIndicator
+        {
+            get { return IsCheckedAll(ListOfCategoryForFilter) ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
+        public Visibility ShowFilterTradeMarkIndicator
+        {
+            get { return IsCheckedAll(ListOfTradeMarkForFilter) ? Visibility.Visible : Visibility.Collapsed; }
+        }
+
+        public Visibility HideFilterTradeMarkIndicator
+        {
+            get { return IsCheckedAll(ListOfTradeMarkForFilter) ? Visibility.Collapsed : Visibility.Visible; }
+        }
+
         #endregion
 
         #region "Command"

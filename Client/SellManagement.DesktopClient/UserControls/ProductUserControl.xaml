@@ -1,14 +1,14 @@
 ﻿<UserControl x:Class="SellManagement.DesktopClient.UserControls.ProductUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SellManagement.DesktopClient.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModel="clr-namespace:SellManagement.DesktopClient.ViewModels"
              xmlns:b="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:userControl="clr-namespace:SellManagement.DesktopClient.UserControls"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              Loaded="UserControl_Loaded">
     <UserControl.DataContext>
@@ -81,7 +81,7 @@
                               Width="230"
                               Foreground="White"
                               Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                              materialDesign:HintAssist.Hint="Nhóm hàng" 
+                              materialDesign:HintAssist.Hint="Nhóm hàng"
                               Margin="20 0 0 0"
                               PreviewKeyDown="OnKeyDown"
                               PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus"
@@ -109,36 +109,36 @@
                               Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                               materialDesign:HintAssist.Hint="Thương hiệu"
                               PreviewKeyDown="OnKeyDown"
-                              PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus" 
+                              PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus"
                               Name="PART_TradeMark"/>
-                    <Button Width="28"
-                            Height="28"
-                            Margin="10 0 0 0"
-                            VerticalAlignment="Bottom"
-                            IsTabStop="False"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button"
-                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
-                                <Setter Property="Padding"
-                                        Value="0" />
-                                <Setter Property="BorderBrush"
-                                        Value="Transparent" />
-                                <Setter Property="BorderThickness"
-                                        Value="0" />
-                                <Setter Property="Background"
-                                        Value="Transparent" />
-                            </Style>
-                        </Button.Style>
-                        <Button.Content>
-                            <materialDesign:PackIcon Kind="Add"
-                                                     Width="20"
-                                                     Height="20"
-                                                     Foreground="Green"
-                                                     HorizontalAlignment="Right"
-                                                     VerticalAlignment="Center" />
-                        </Button.Content>
-                    </Button>
+                    <!--<Button Width="28"
+                    Height="28"
+                    Margin="10 0 0 0"
+                    VerticalAlignment="Bottom"
+                    IsTabStop="False"
+                    Cursor="Hand">
+                    <Button.Style>
+                    <Style TargetType="Button"
+                    BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    <Setter Property="Padding"
+                    Value="0" />
+                    <Setter Property="BorderBrush"
+                    Value="Transparent" />
+                    <Setter Property="BorderThickness"
+                    Value="0" />
+                    <Setter Property="Background"
+                    Value="Transparent" />
+                    </Style>
+                    </Button.Style>
+                    <Button.Content>
+                    <materialDesign:PackIcon Kind="Add"
+                    Width="20"
+                    Height="20"
+                    Foreground="Green"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center" />
+                    </Button.Content>
+                    </Button>-->
                     <ComboBox ItemsSource="{Binding ListOfOrigin}"
                               DisplayMemberPath="Name"
                               SelectedValuePath="Code"
@@ -149,36 +149,36 @@
                               materialDesign:HintAssist.Hint="Xuất xứ"
                               Margin="25 0 0 0"
                               PreviewKeyDown="OnKeyDown"
-                              PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus" 
+                              PreviewGotKeyboardFocus="TextBox_PreviewGotKeyboardFocus"
                               Name="PART_Origin"/>
-                    <Button Width="28"
-                            Height="28"
-                            Margin="10 0 0 0"
-                            VerticalAlignment="Bottom"
-                            IsTabStop="False"
-                            Cursor="Hand">
-                        <Button.Style>
-                            <Style TargetType="Button"
-                                   BasedOn="{StaticResource MaterialDesignFlatButton}">
-                                <Setter Property="Padding"
-                                        Value="0" />
-                                <Setter Property="BorderBrush"
-                                        Value="Transparent" />
-                                <Setter Property="BorderThickness"
-                                        Value="0" />
-                                <Setter Property="Background"
-                                        Value="Transparent" />
-                            </Style>
-                        </Button.Style>
-                        <Button.Content>
-                            <materialDesign:PackIcon Kind="Add"
-                                                     Width="20"
-                                                     Height="20"
-                                                     Foreground="Green"
-                                                     HorizontalAlignment="Right"
-                                                     VerticalAlignment="Center" />
-                        </Button.Content>
-                    </Button>
+                    <!--<Button Width="28"
+                    Height="28"
+                    Margin="10 0 0 0"
+                    VerticalAlignment="Bottom"
+                    IsTabStop="False"
+                    Cursor="Hand">
+                    <Button.Style>
+                    <Style TargetType="Button"
+                    BasedOn="{StaticResource MaterialDesignFlatButton}">
+                    <Setter Property="Padding"
+                    Value="0" />
+                    <Setter Property="BorderBrush"
+                    Value="Transparent" />
+                    <Setter Property="BorderThickness"
+                    Value="0" />
+                    <Setter Property="Background"
+                    Value="Transparent" />
+                    </Style>
+                    </Button.Style>
+                    <Button.Content>
+                    <materialDesign:PackIcon Kind="Add"
+                    Width="20"
+                    Height="20"
+                    Foreground="Green"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center" />
+                    </Button.Content>
+                    </Button>-->
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"
@@ -208,7 +208,7 @@
                          Foreground="White"
                          Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Chi tiết sản phẩm"
-                         HorizontalAlignment="Left" 
+                         HorizontalAlignment="Left"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"

@@ -90,5 +90,15 @@ namespace SellManagement.DesktopClient.UserControls
 
             lastSelectedIndex = PART_TabMain.SelectedIndex;
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void PopupBox_ToggleCheckedContentClick(object sender, RoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

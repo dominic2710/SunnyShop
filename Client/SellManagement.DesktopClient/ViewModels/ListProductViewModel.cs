@@ -32,6 +32,16 @@ namespace SellManagement.DesktopClient.ViewModels
             CheckOriginCommand = new RelayCommand<object>(p => { return true; }, p => UpdateFilterList(ListOfOriginForFilter, p));
 
             OpenProductInfoCommand = new RelayCommand<object>(p => { return !IsUseForSearchWindow; }, p => UpdateProductAsync());
+
+            SelectionChangedCommand = new RelayCommand<object>(
+                p =>
+                {
+                    return true;
+                },
+                p =>
+                {
+                    OnPropertyChanged(nameof(ListOfProductFiltered));
+                });
         }
 
         void UpdateFilterList(ObservableCollection<FilterItemModel> targetList, object targetCheckbox)
@@ -73,7 +83,20 @@ namespace SellManagement.DesktopClient.ViewModels
 
             }
 
+            OnPropertyChanged("ShowFilterCategoryIndicator");
+            OnPropertyChanged("HideFilterCategoryIndicator");
+            OnPropertyChanged("ShowFilterTradeMarkIndicator");
+            OnPropertyChanged("HideFilterTradeMarkIndicator");
             OnPropertyChanged("ListOfProductFiltered");
+        }
+
+        bool IsCheckedAll(ObservableCollection<FilterItemModel> targetList)
+        {
+            var item = targetList
+                        .Where(x => x.IsChecked == false)
+                        .Where(x => x.DisplayName != ShareContanst.SELECT_ALL)
+                        .FirstOrDefault();
+            return item == null;
         }
 
         void AddProductAsync()
@@ -204,7 +227,6 @@ namespace SellManagement.DesktopClient.ViewModels
             return resultList;
         }
 
-
         #region "Properties"
         public event EventHandler<OpenEventArgs> RequestOpen;
         private ObservableCollection<Product> listOfProduct;
@@ -331,6 +353,7 @@ namespace SellManagement.DesktopClient.ViewModels
                 }
             }
         }
+
         #endregion
 
         #region "Command"
@@ -339,7 +362,7 @@ namespace SellManagement.DesktopClient.ViewModels
         public ICommand CheckTradeMarkCommand { get; set; }
         public ICommand CheckOriginCommand { get; set; }
         public ICommand OpenProductInfoCommand { get; set; }
-
+        public ICommand SelectionChangedCommand { get; set; }
         #endregion
 
     }

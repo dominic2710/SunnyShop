@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="SellManagement.DesktopClient.UserControls.ComboCheckboxUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SellManagement.DesktopClient.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d"
+             d:DesignHeight="35" d:DesignWidth="250" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Style TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate >
+                        <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding}" MaxWidth="350" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <materialDesign:PopupBox PlacementMode="BottomAndAlignLeftEdges"
+                             StaysOpen="True" Opened="PopupBox_Opened" GotFocus="PopupBox_GotFocus">
+        <materialDesign:PopupBox.ToggleContent>
+            <Border BorderThickness="0 0 0 0.5" BorderBrush="White"
+                    Padding="3" >
+                <WrapPanel FocusVisualStyle="{x:Null}">
+                    <Grid Width="235" >
+                        <TextBlock Text="ComboCheckbox"
+                                   FontSize="16"
+                                   Margin="0 0 30 0"
+                                   Foreground="Gray"
+                                   HorizontalAlignment="Left"
+                                   x:Name="PART_Title" TextWrapping="NoWrap"
+                                   MaxHeight="25"/>
+                        <materialDesign:PackIcon Kind="FilterOff" Width="24" Height="24" Foreground="Gray"
+                                                 HorizontalAlignment="Right"
+                                                 x:Name="PART_HideFilterIndicator"/>
+                        <materialDesign:PackIcon Kind="Filter" Width="24" Height="24" Foreground="#FF2196F3"
+                                                 HorizontalAlignment="Right"
+                                                 Visibility="Collapsed"
+                                                 x:Name="PART_ShowFilterIndicator"/>
+                    </Grid>
+                </WrapPanel>
+            </Border>
+        </materialDesign:PopupBox.ToggleContent>
+        <materialDesign:PopupBox.PopupContent>
+            <StackPanel Margin="5">
+                <TextBox materialDesign:HintAssist.Hint="Tìm"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         FontSize="15"
+                         Foreground="White"
+                         Width="250"
+                         VerticalAlignment="Center"
+                         x:Name="PART_FilterText"
+                         TextChanged="PART_FilterText_TextChanged"/>
+                <ScrollViewer Height="400" VerticalScrollBarVisibility="Auto" Margin="0 5 0 0">
+                    <ItemsControl x:Name="PART_ListItem">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox FocusVisualStyle="{x:Null}"
+                                          VerticalAlignment="Center"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Name="PART_Checkbox"
+                                          Checked="PART_Checkbox_Checked"
+                                          Unchecked="PART_Checkbox_Unchecked"
+                                          Content="{Binding DisplayName}"
+                                          Tag="{Binding}"
+                                          FontSize="15"
+                                          Margin="0 2 0 2"
+                                          VerticalContentAlignment="Bottom" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </materialDesign:PopupBox.PopupContent>
+    </materialDesign:PopupBox>
+</UserControl>

@@ -180,6 +180,9 @@
     <Compile Include="UserControls\BackdropUserControl.xaml.cs">
       <DependentUpon>BackdropUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ComboCheckboxUserControl.xaml.cs">
+      <DependentUpon>ComboCheckboxUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CustomerUserControl.xaml.cs">
       <DependentUpon>CustomerUserControl.xaml</DependentUpon>
     </Compile>
@@ -260,6 +263,10 @@
       <DependentUpon>SearchProductView.xaml</DependentUpon>
     </Compile>
     <Page Include="UserControls\BackdropUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ComboCheckboxUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

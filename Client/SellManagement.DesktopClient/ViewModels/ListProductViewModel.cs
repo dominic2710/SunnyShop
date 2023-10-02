@@ -32,6 +32,16 @@ namespace SellManagement.DesktopClient.ViewModels
             CheckOriginCommand = new RelayCommand<object>(p => { return true; }, p => UpdateFilterList(ListOfOriginForFilter, p));
 
             OpenProductInfoCommand = new RelayCommand<object>(p => { return !IsUseForSearchWindow; }, p => UpdateProductAsync());
+
+            SelectionChangedCommand = new RelayCommand<object>(
+                p =>
+                {
+                    return true;
+                },
+                p =>
+                {
+                    OnPropertyChanged(nameof(ListOfProductFiltered));
+                });
         }
 
         void UpdateFilterList(ObservableCollection<FilterItemModel> targetList, object targetCheckbox)
@@ -217,7 +227,6 @@ namespace SellManagement.DesktopClient.ViewModels
             return resultList;
         }
 
-
         #region "Properties"
         public event EventHandler<OpenEventArgs> RequestOpen;
         private ObservableCollection<Product> listOfProduct;
@@ -345,26 +354,6 @@ namespace SellManagement.DesktopClient.ViewModels
             }
         }
 
-        public Visibility ShowFilterCategoryIndicator
-        {
-            get { return IsCheckedAll(ListOfCategoryForFilter) ? Visibility.Visible : Visibility.Collapsed; }
-        }
-
-        public Visibility HideFilterCategoryIndicator
-        {
-            get { return IsCheckedAll(ListOfCategoryForFilter) ? Visibility.Collapsed : Visibility.Visible; }
-        }
-
-        public Visibility ShowFilterTradeMarkIndicator
-        {
-            get { return IsCheckedAll(ListOfTradeMarkForFilter) ? Visibility.Visible : Visibility.Collapsed; }
-        }
-
-        public Visibility HideFilterTradeMarkIndicator
-        {
-            get { return IsCheckedAll(ListOfTradeMarkForFilter) ? Visibility.Collapsed : Visibility.Visible; }
-        }
-
         #endregion
 
         #region "Command"
@@ -373,7 +362,7 @@ namespace SellManagement.DesktopClient.ViewModels
         public ICommand CheckTradeMarkCommand { get; set; }
         public ICommand CheckOriginCommand { get; set; }
         public ICommand OpenProductInfoCommand { get; set; }
-
+        public ICommand SelectionChangedCommand { get; set; }
         #endregion
 
     }

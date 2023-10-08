@@ -32,6 +32,17 @@ namespace SellManagement.Api.Controllers
             return Ok(response);
         }
 
+        [HttpPost("GetProductByBarcode")]
+        [Authorize]
+        public async Task<IActionResult> GetProductByBarcode([FromBody] string barcode)
+        {
+            var response = new GetProductByCdResponse
+            {
+                ProductData = await _productFunction.GetProductByBarcode(barcode)
+            };
+            return Ok(response);
+        }
+
         [HttpPost("GetListProduct")]
         [Authorize]
         public async Task<IActionResult> GetListProduct()

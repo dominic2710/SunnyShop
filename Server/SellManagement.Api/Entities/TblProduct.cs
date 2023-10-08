@@ -12,6 +12,7 @@
         public int CostPrice { get; set; }
         public int SoldPrice { get; set; }
         public string Detail { get; set; }
+        public string SapoProductId { get; set; }
 
     }
 }

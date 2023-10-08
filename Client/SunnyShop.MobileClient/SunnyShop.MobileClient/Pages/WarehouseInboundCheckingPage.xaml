@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fontHelper="clr-namespace:SunnyShop.MobileClient.Helpers"
+             x:Class="SunnyShop.MobileClient.Pages.WarehouseInboundCheckingPage"
+             xmlns:viewModel="clr-namespace:SunnyShop.MobileClient.ViewModels"
+             Title="Kiểm hàng - Nhập kho"
+             >
+    <Grid BackgroundColor="LightGray">
+        <CollectionView ItemsSource="{Binding InventoryDetails}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout  Orientation="Vertical" ItemSpacing="1"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView Background="White">
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           BackgroundColor="#c0392b">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource FontFamily="IconFontTypes"
+                                                         Glyph="{x:Static fontHelper:IconFont.Delete}"
+                                                         Color="White"
+                                                         />
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+                                <SwipeItem Text="Edit"
+                                           BackgroundColor="#27ae60">
+                                    <SwipeItem.IconImageSource>
+                                        <FontImageSource FontFamily="IconFontTypes"
+                                                         Glyph="{x:Static fontHelper:IconFont.Edit}"
+                                                         Color="White"/>
+                                    </SwipeItem.IconImageSource>
+                                </SwipeItem>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="45"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2.5*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Image Source="cubes.png" WidthRequest="48" HeightRequest="48"
+                                   Grid.RowSpan="4"
+                                   VerticalOptions="Center"/>
+
+                            <Label Text="{Binding ProductName}"
+                                   FontSize="16"
+                                   Grid.Column="1"
+                                   TextColor="#3498db"
+                                   LineBreakMode="WordWrap"/>
+
+                            <Label Text="Lô: " Grid.Column="1"
+                                   Grid.Row="1"/>
+                            <Label Text="{Binding LotNo}"
+                                   Margin="25,0,0,0"
+                                   Grid.Column="1"
+                                   Grid.Row="1"/>
+                            <Label Text="Ngày hết hạn: "
+                                   Margin="130,0,0,0"
+                                   Grid.Column="1"
+                                   Grid.Row="1"/>
+                            <Label Text="{Binding ExpiryDate, StringFormat='{0:yyyy/MM/dd}'}" Margin="225,0,0,0"
+                                   Grid.Column="1"
+                                   Grid.Row="1"/>
+
+                            <Label Text="Barcode: " Grid.Row="2"
+                                   Grid.Column="1"/>
+                            <Label Text="{Binding Barcode}"
+                                   Grid.Row="2" Margin="60,0,0,0"
+                                   Grid.Column="1"/>
+
+                            <Label Text="{Binding Quantity}"
+                                   Grid.RowSpan="4"
+                                   Grid.Column="2"
+                                   FontSize="16" FontAttributes="Bold"
+                                   VerticalOptions="Center"
+                                   HorizontalTextAlignment="End"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,10,0"
+                                   TextColor="#3498db"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ImageButton CornerRadius="10"
+                     WidthRequest="64"
+                     HeightRequest="64"
+                     Margin="0,0,24,48"
+                     Padding="5"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     Background="#0984e3"
+                     Command="{Binding OpenScanBarcodePageCommand}">
+            <ImageButton.Source>
+                <FontImageSource FontFamily="IconFontTypes"
+                                 Glyph="{x:Static fontHelper:IconFont.Qr_code_scanner}"
+                                 Size="100"/>
+            </ImageButton.Source>
+        </ImageButton>
+
+        <Label x:Name="lblError" Text="{Binding ErrorMessage}" TextColor="Red"
+               VerticalOptions="End" HorizontalOptions="Center"
+               Margin="0,0,0,10"/>
+    </Grid>
+
+</ContentPage>

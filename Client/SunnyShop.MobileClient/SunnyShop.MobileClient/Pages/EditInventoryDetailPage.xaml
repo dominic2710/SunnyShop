@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SunnyShop.MobileClient.Pages.EditInventoryDetailPage"
+             xmlns:fontHelper="clr-namespace:SunnyShop.MobileClient.Helpers"
+             BackgroundColor="LightGray"
+             Title="Thông tin kiểm kê"
+             NavigatingFrom="ContentPage_NavigatingFrom">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ApplyInventoryDetailCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="IconFontTypes"
+                                 Glyph="{x:Static fontHelper:IconFont.Check}"
+                                 Size="100"
+                                 Color="White"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <VerticalStackLayout Spacing="15">
+            <Grid Background="White"  >
+                <Label Text="{Binding ProductName}"
+                       TextColor="#3498db" FontSize="25"
+                       Margin="15,0,15,0"/>
+            </Grid>
+
+            <CarouselView ItemsSource="{Binding InventoryDetails}"
+                          Loop="False"
+                          CurrentItem="{Binding SelectedInventoryDetail, Mode=TwoWay}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Spacing="1">
+                            <Grid Background="White"
+                                  HeightRequest="40"
+                                  >
+                                <Label Text="Trang" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="15,0,0,0"/>
+                                <Label Text="{Binding PageNumber}" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,15,0"
+                                       HorizontalOptions="End"/>
+                            </Grid>
+
+                            <Grid Background="White"
+                                  HeightRequest="40"
+                                  >
+                                <Label Text="Barcode" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="15,0,0,0"/>
+                                <Label Text="{Binding Barcode}" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,15,0"
+                                       HorizontalOptions="End"/>
+                            </Grid>
+
+                            <Grid Background="White"
+                                  HeightRequest="40"
+                                  IsVisible="False">
+                                <Label Text="Số lô" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="15,0,0,0"/>
+                                <Entry Text="{Binding LotNo}" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,15,0"
+                                       HorizontalOptions="End"
+                                       MinimumWidthRequest="150"
+                                       HorizontalTextAlignment="End"
+                                       IsVisible="{Binding IsEditable}"
+                                       x:Name="entryLotNo"/>
+                                <Label Text="{Binding LotNo}" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,15,0"
+                                       HorizontalOptions="End"
+                                       IsVisible="{Binding IsDisplay}"/>
+                            </Grid>
+
+                            <Grid Background="White"
+                                  HeightRequest="40"
+                                  >
+                                <Label Text="Ngày hết hạn" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="15,0,0,0"/>
+                                <DatePicker Date="{Binding ExpiryDate}" FontSize="18"
+                                            VerticalOptions="Center"
+                                            Margin="0,0,15,0"
+                                            HorizontalOptions="End"
+                                            IsVisible="{Binding IsEditable}"
+                                            Format="yyyy/MM"
+                                            />
+                                <!--<Entry Text="{Binding ExpiryDate,StringFormat='{0:yyyy/MM}'}" FontSize="18"
+                                VerticalOptions="Center"
+                                Margin="0,0,15,0"
+                                HorizontalOptions="End"
+                                MinimumWidthRequest="150"
+                                HorizontalTextAlignment="End"
+                                IsVisible="{Binding IsEditable}"
+                                x:Name="entryDate"/>-->
+                                <Label Text="{Binding ExpiryDate, StringFormat='{0:yyyy/MM}'}" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,15,0"
+                                       HorizontalOptions="End"
+                                       IsVisible="{Binding IsDisplay}"/>
+                            </Grid>
+
+                            <Grid Background="White"
+                                  HeightRequest="40"
+                                  >
+                                <Label Text="Đã kiểm" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="15,0,0,0"/>
+                                <Label Text="{Binding Quantity}" FontSize="18"
+                                       VerticalOptions="Center"
+                                       Margin="0,0,15,0"
+                                       HorizontalOptions="End"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <Grid Background="White"
+                  HeightRequest="60">
+                <Label Text="Kiểm thêm" FontSize="20"
+                       VerticalOptions="Center"
+                       Margin="15,0,0,0"
+                       TextColor="#3498db"
+                       FontAttributes="Bold"/>
+                <Entry Text="{Binding AddQuantity}" FontSize="20"
+                       VerticalOptions="Center"
+                       Margin="0,0,15,0"
+                       HorizontalOptions="End"
+                       TextColor="#3498db"
+                       FontAttributes="Bold"
+                       MinimumWidthRequest="70"
+                       HorizontalTextAlignment="End"
+                       Keyboard="Numeric"
+                       x:Name="entryAddQuantity"
+                       Focused="entryAddQuantity_Focused"/>
+            </Grid>
+        </VerticalStackLayout>
+        <ActivityIndicator
+            WidthRequest="50"
+            HeightRequest="50"
+            IsRunning="{Binding ShowRunning}"
+            Color="#2980b9" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:gv="clr-namespace:BarcodeScanner.Mobile;assembly=BarcodeScanner.Mobile.Maui"
+             x:Class="SunnyShop.MobileClient.Pages.ScanBarcodePage"
+             Title="ScanBarcodePage" Loaded="ContentPage_Loaded" NavigatedTo="ContentPage_NavigatedTo">
+    <Grid>
+        <gv:CameraView VibrationOnDetected="True" HorizontalOptions="Center" VerticalOptions="Center" OnDetected="CameraView_OnDetected"
+                       x:Name="cameraView" CameraFacing="Back"  CaptureQuality="Highest" ScanInterval="100"/>
+        <ActivityIndicator
+            WidthRequest="100"
+            HeightRequest="100"
+            x:Name="activityIndicator"
+            Color="#2980b9" />
+    </Grid>
+</ContentPage>

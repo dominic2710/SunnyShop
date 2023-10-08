@@ -23,6 +23,13 @@ namespace SellManagement.Api.Functions
             var entity = await _context.TblProducts.Where(x => x.ProductCd == productCd).ToListAsync();
             return entity.Select(ToProductModel).FirstOrDefault();
         }
+
+        public async Task<Product> GetProductByBarcode(string barcode)
+        {
+            var entity = await _context.TblProducts.Where(x => x.Barcode == barcode).ToListAsync();
+            return entity.Select(ToProductModel).FirstOrDefault();
+        }
+
         public async Task<IEnumerable<Product>> GetListProduct()
         {
             var enties = await _context.TblProducts.ToListAsync();
@@ -120,7 +127,8 @@ namespace SellManagement.Api.Functions
                 AvailabilityInStock = productInventories.AvailabilityInStock,
                 CostPrice = entity.CostPrice,
                 SoldPrice = entity.SoldPrice,
-                Detail = entity.Detail
+                Detail = entity.Detail,
+                SapoProductId = entity.SapoProductId
             };
         }
     }

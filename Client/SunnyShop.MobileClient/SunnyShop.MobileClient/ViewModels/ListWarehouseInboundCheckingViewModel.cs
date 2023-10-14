@@ -20,21 +20,31 @@ namespace SunnyShop.MobileClient.ViewModels
             set { inventoryHeads = value; OnPropertyChanged(); }
         }
 
+        private bool showRunning;
+        public bool ShowRunning
+        {
+            get { return showRunning; }
+            set { showRunning = value; OnPropertyChanged(); }
+        }
         public ListWarehouseInboundCheckingViewModel()
         {
             Task.Run(GetListInventoryHead);
 
             AddInventoryCommand = new Command<object>(async (param) =>
             {
+                ShowRunning = true;
                 await Shell.Current.GoToAsync($"WarehouseInboundCheckingPage?sourcePage={nameof(ListWarehouseInboundCheckingPage)}");
+                ShowRunning = false;
             });
 
             EditInventoryCommand = new Command<object>(async (param) =>
             {
+                ShowRunning = true;
                 var selectedDetail = param as Models.Inventory;
                 await Shell.Current.GoToAsync($"WarehouseInboundCheckingPage?" +
                                                         $"sourcePage={nameof(ListWarehouseInboundCheckingPage)}" +
                                                         $"&inventoryNo={selectedDetail.InventoryNo}");
+                ShowRunning = false;
             });
         }
 
@@ -45,6 +55,7 @@ namespace SunnyShop.MobileClient.ViewModels
 
         async Task GetListInventoryHead()
         {
+            ShowRunning = true;
             var result = await Services.ServiceProvider.GetInstance().CallWebApi<object, GetListInventoryResponse>
                                             ("/Inventory/GetListInventory", HttpMethod.Post, null);
 
@@ -63,6 +74,7 @@ namespace SunnyShop.MobileClient.ViewModels
             {
                 await Shell.Current.DisplayAlert("Lỗi", result.StatusMessage, "OK");
             }
+            ShowRunning = false;
         }
 
         public ICommand AddInventoryCommand { get; set; }

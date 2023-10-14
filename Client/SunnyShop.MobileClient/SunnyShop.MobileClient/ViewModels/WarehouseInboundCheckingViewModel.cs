@@ -25,7 +25,10 @@ namespace SunnyShop.MobileClient.ViewModels
             switch (sourcePage)
             {
                 case nameof(ListWarehouseInboundCheckingPage):
+                    Initialize();
+
                     if (!query.ContainsKey("inventoryNo")) return;
+
                     InventoryNo = HttpUtility.UrlDecode(query["inventoryNo"].ToString());
                     if (!string.IsNullOrEmpty(InventoryNo))
                     {
@@ -111,16 +114,21 @@ namespace SunnyShop.MobileClient.ViewModels
             get { return InventoryDetails == null ? 0 : InventoryDetails.Sum(x => x.Quantity); }
         }
 
+        private bool showRunning;
+        public bool ShowRunning
+        {
+            get { return showRunning; }
+            set { showRunning = value; OnPropertyChanged(); }
+        }
+
         public WarehouseInboundCheckingViewModel()
         {
-            InventoryDetails = new ObservableCollection<Models.InventoryDetail>();
-            InventoryDate = DateTime.Now;
-
-
+            Initialize();
             OpenScanBarcodePageCommand = new Command<object>(async (param) =>
             {
-                ErrorMessage = "";
+                ShowRunning = true;
                 await Shell.Current.GoToAsync($"ScanBarcodePage");
+                ShowRunning = false;
             });
 
             DeleteDetailCommand = new Command<object>(DeleteDetail);
@@ -134,6 +142,14 @@ namespace SunnyShop.MobileClient.ViewModels
             {
                 return !string.IsNullOrEmpty(InventoryNo);
             });
+        }
+
+        void Initialize()
+        {
+            InventoryDetails = new ObservableCollection<Models.InventoryDetail>();
+            InventoryNo = string.Empty;
+            InventoryDate = DateTime.Now;
+            Note = string.Empty;
         }
 
         void DeleteDetail(object param)
@@ -193,6 +209,7 @@ namespace SunnyShop.MobileClient.ViewModels
                 })
             };
 
+            ShowRunning = true;
             //Update
             if (!string.IsNullOrEmpty(InventoryNo))
             {
@@ -207,7 +224,7 @@ namespace SunnyShop.MobileClient.ViewModels
                 if (result.StatusCode == 200)
                 {
                     await Shell.Current.DisplayAlert("Thông báo", "Lưu thông tin kiểm kê thành công", "OK");
-                    await Shell.Current.GoToAsync($"ListWarehouseInboundCheckingPage");
+                    await Shell.Current.GoToAsync($"ListWarehouseInboundCheckingPage?sourcePage={nameof(WarehouseInboundCheckingPage)}");
                 }
                 else
                 {
@@ -227,7 +244,7 @@ namespace SunnyShop.MobileClient.ViewModels
                 if (result.StatusCode == 200)
                 {
                     await Shell.Current.DisplayAlert("Thông báo", "Lưu thông tin kiểm kê thành công", "OK");
-                    await Shell.Current.GoToAsync($"ListWarehouseInboundCheckingPage");
+                    await Shell.Current.GoToAsync($"ListWarehouseInboundCheckingPage?sourcePage={nameof(WarehouseInboundCheckingPage)}");
 
                     InventoryNo = result.InventoryData.InventoryNo;
                 }
@@ -236,7 +253,7 @@ namespace SunnyShop.MobileClient.ViewModels
                     await Shell.Current.DisplayAlert("Lỗi", result.StatusMessage, "OK");
                 }
             }
-
+            ShowRunning = false;
         }
 
         async Task DeleteData()
@@ -244,6 +261,7 @@ namespace SunnyShop.MobileClient.ViewModels
             var confirmed = await Shell.Current.DisplayAlert("Xác nhận", "Delete thông tin kiểm kê này?", "Đồng ý", "Hủy");
             if (!confirmed) return;
 
+            ShowRunning = true;
             var result = await Services.ServiceProvider.GetInstance().CallWebApi<string, InventoryDeleteResponse>
                                         ("/Inventory/UpdateInventory", HttpMethod.Post, InventoryNo);
 
@@ -256,6 +274,7 @@ namespace SunnyShop.MobileClient.ViewModels
             {
                 await Shell.Current.DisplayAlert("Lỗi", result.StatusMessage, "OK");
             }
+            ShowRunning = false;
         }
 
         public ICommand OpenScanBarcodePageCommand { get; set; }

@@ -187,8 +187,13 @@
                                      Size="100"/>
                 </ImageButton.Source>
             </ImageButton>
-
         </Grid>
+
+        <ActivityIndicator
+            WidthRequest="50"
+            HeightRequest="50"
+            IsRunning="{Binding ShowRunning}"
+            Color="#2980b9" />
     </Grid>
 
 </ContentPage>

@@ -12,12 +12,15 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout BackgroundColor="White"
-                                         HeightRequest="100">
-                        <VerticalStackLayout.GestureRecognizers>
+                    <Grid BackgroundColor="White"
+                          HeightRequest="100">
+                        <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding EditInventoryCommand, Source={RelativeSource AncestorType={x:Type viewModel:ListWarehouseInboundCheckingViewModel}}}"
                                                   CommandParameter="{Binding .}"/>
-                        </VerticalStackLayout.GestureRecognizers>
+                        </Grid.GestureRecognizers>
+                        <Rectangle WidthRequest="8"
+                                   BackgroundColor="#27ae60"
+                                   HorizontalOptions="Start"/>
                         <Grid>
                             <Label Text="{Binding InventoryNo}" FontSize="18"
                                    Margin="15,0,0,0"
@@ -32,8 +35,8 @@
                                    HorizontalOptions="End"/>
                         </Grid>
                         <Label Text="{Binding Note}" FontSize="16"
-                               Margin="15,5,0,0"/>
-                    </VerticalStackLayout>
+                               Margin="15,25,0,0"/>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -53,5 +56,11 @@
                                  Size="100"/>
             </ImageButton.Source>
         </ImageButton>
+
+        <ActivityIndicator
+            WidthRequest="50"
+            HeightRequest="50"
+            IsRunning="{Binding ShowRunning}"
+            Color="#2980b9" />
     </Grid>
 </ContentPage>

@@ -23,11 +23,11 @@ namespace SellManagement.Api.Controllers
 
         [HttpPost("GetSellOrderByNo")]
         [Authorize]
-        public async Task<IActionResult> GetSellOrderByNo([FromBody] string SellOrderNo)
+        public async Task<IActionResult> GetSellOrderByNo([FromBody] string sellOrderNo)
         {
             var response = new GetSellOrderByCdResponse
             {
-                SellOrderData = await _SellOrderFunction.GetSellOrderByNo(SellOrderNo)
+                SellOrderData = await _SellOrderFunction.GetSellOrderByNo(sellOrderNo)
             };
             return Ok(response);
         }
@@ -80,11 +80,11 @@ namespace SellManagement.Api.Controllers
 
         [HttpPost("DeleteSellOrder")]
         [Authorize]
-        public async Task<IActionResult> DeleteSellOrder([FromBody] string SellOrderNo)
+        public async Task<IActionResult> DeleteSellOrder([FromBody] string sellOrderNo)
         {
             var response = new SellOrderDeleteResponse
             {
-                DelRecCount = await _SellOrderFunction.DeleteSellOrder(SellOrderNo)
+                DelRecCount = await _SellOrderFunction.DeleteSellOrder(sellOrderNo)
             };
             return Ok(response);
         }

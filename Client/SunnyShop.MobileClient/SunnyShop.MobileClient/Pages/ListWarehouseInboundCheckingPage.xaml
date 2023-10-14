@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fontHelper="clr-namespace:SunnyShop.MobileClient.Helpers"
+             x:Class="SunnyShop.MobileClient.Pages.ListWarehouseInboundCheckingPage"
+             xmlns:viewModel="clr-namespace:SunnyShop.MobileClient.ViewModels"
+             Title="Danh sách kiểm kê">
+    <Grid BackgroundColor="LightGray">
+        <CollectionView ItemsSource="{Binding InventoryHeads}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout  Orientation="Vertical" ItemSpacing="1"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout BackgroundColor="White"
+                                         HeightRequest="100">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EditInventoryCommand, Source={RelativeSource AncestorType={x:Type viewModel:ListWarehouseInboundCheckingViewModel}}}"
+                                                  CommandParameter="{Binding .}"/>
+                        </VerticalStackLayout.GestureRecognizers>
+                        <Grid>
+                            <Label Text="{Binding InventoryNo}" FontSize="18"
+                                   Margin="15,0,0,0"
+                                   FontAttributes="Bold"/>
+                            <Label Text="{Binding InventoryDate, StringFormat='{0:yyyy/MM/dd}'}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="160,0,0,0"/>
+                            <Label Text="{Binding ProductCount, StringFormat='{0} SP'}" FontSize="18"
+                                   FontAttributes="Bold"
+                                   Margin="0,0,15,0"
+                                   HorizontalOptions="End"/>
+                        </Grid>
+                        <Label Text="{Binding Note}" FontSize="16"
+                               Margin="15,5,0,0"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ImageButton CornerRadius="10"
+                     WidthRequest="64"
+                     HeightRequest="64"
+                     Margin="0,0,24,48"
+                     Padding="5"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     Background="#0984e3"
+                     Command="{Binding AddInventoryCommand}">
+            <ImageButton.Source>
+                <FontImageSource FontFamily="IconFontTypes"
+                                 Glyph="{x:Static fontHelper:IconFont.Add}"
+                                 Size="100"/>
+            </ImageButton.Source>
+        </ImageButton>
+    </Grid>
+</ContentPage>

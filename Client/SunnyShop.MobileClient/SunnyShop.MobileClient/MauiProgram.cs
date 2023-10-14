@@ -29,10 +29,12 @@ public static class MauiProgram
 		builder.Services.AddSingleton<AppShell>();
 		builder.Services.AddSingleton<WarehouseInboundCheckingPage>();
 		builder.Services.AddSingleton<EditInventoryDetailPage>();
-		builder.Services.AddSingleton<WarehouseInboundCheckingViewModel>();
+        builder.Services.AddSingleton<ListWarehouseInboundCheckingPage>();
+        builder.Services.AddSingleton<WarehouseInboundCheckingViewModel>();
 		builder.Services.AddSingleton<EditInventoryDetailViewModel>();
+        builder.Services.AddSingleton<ListWarehouseInboundCheckingViewModel>();
 
-		builder.Services.AddSingleton(AudioManager.Current);
+        builder.Services.AddSingleton(AudioManager.Current);
 		return builder.Build();
 	}
 }

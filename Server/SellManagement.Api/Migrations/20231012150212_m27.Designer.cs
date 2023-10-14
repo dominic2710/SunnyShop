@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SellManagement.Api.Entities;
 
 namespace SellManagement.Api.Migrations
 {
     [DbContext(typeof(SellManagementContext))]
-    partial class SellManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20231012150212_m27")]
+    partial class m27
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,11 +130,11 @@ namespace SellManagement.Api.Migrations
                     b.Property<string>("CreateUserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("InventoryDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("InventoryNo")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InvetoryDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");

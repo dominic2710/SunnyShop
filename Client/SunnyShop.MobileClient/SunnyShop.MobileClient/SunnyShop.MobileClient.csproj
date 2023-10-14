@@ -72,6 +72,9 @@
 	  <MauiXaml Update="Pages\EditInventoryDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\ListWarehouseInboundCheckingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\ScanBarcodePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

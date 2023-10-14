@@ -9,5 +9,6 @@ namespace SellManagement.Api.Const
     {
         public const int PURCHASE_ORDER = 1;
         public const int SELL_ORDER = 2;
+        public const int INVENTORY = 3;
     }
 }

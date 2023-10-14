@@ -59,6 +59,7 @@ namespace SellManagement.Api
             services.AddScoped<ISellOrderFunction, SellOrderFunction>();
             services.AddScoped<IVoucherNoManagementFunction, VoucherNoManagementFunction>();
             services.AddScoped<IOverviewFunction, OverviewFunction>();
+            services.AddScoped<IInventoryFunction, InventoryFunction>();
             services.AddHttpContextAccessor();
             services.AddScoped<UserOperator>();
         }

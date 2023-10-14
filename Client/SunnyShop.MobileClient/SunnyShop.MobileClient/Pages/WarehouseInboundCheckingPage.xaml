@@ -4,113 +4,191 @@
              xmlns:fontHelper="clr-namespace:SunnyShop.MobileClient.Helpers"
              x:Class="SunnyShop.MobileClient.Pages.WarehouseInboundCheckingPage"
              xmlns:viewModel="clr-namespace:SunnyShop.MobileClient.ViewModels"
-             Title="Kiểm hàng - Nhập kho"
+             Title="Thông tin kiểm kê"
              >
-    <Grid BackgroundColor="LightGray">
-        <CollectionView ItemsSource="{Binding InventoryDetails}">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout  Orientation="Vertical" ItemSpacing="1"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <SwipeView Background="White">
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem Text="Delete"
-                                           BackgroundColor="#c0392b">
-                                    <SwipeItem.IconImageSource>
-                                        <FontImageSource FontFamily="IconFontTypes"
-                                                         Glyph="{x:Static fontHelper:IconFont.Delete}"
-                                                         Color="White"
-                                                         />
-                                    </SwipeItem.IconImageSource>
-                                </SwipeItem>
-                                <SwipeItem Text="Edit"
-                                           BackgroundColor="#27ae60">
-                                    <SwipeItem.IconImageSource>
-                                        <FontImageSource FontFamily="IconFontTypes"
-                                                         Glyph="{x:Static fontHelper:IconFont.Edit}"
-                                                         Color="White"/>
-                                    </SwipeItem.IconImageSource>
-                                </SwipeItem>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="45"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="2.5*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <Image Source="cubes.png" WidthRequest="48" HeightRequest="48"
-                                   Grid.RowSpan="4"
-                                   VerticalOptions="Center"/>
-
-                            <Label Text="{Binding ProductName}"
-                                   FontSize="16"
-                                   Grid.Column="1"
-                                   TextColor="#3498db"
-                                   LineBreakMode="WordWrap"/>
-
-                            <Label Text="Lô: " Grid.Column="1"
-                                   Grid.Row="1"/>
-                            <Label Text="{Binding LotNo}"
-                                   Margin="25,0,0,0"
-                                   Grid.Column="1"
-                                   Grid.Row="1"/>
-                            <Label Text="Ngày hết hạn: "
-                                   Margin="130,0,0,0"
-                                   Grid.Column="1"
-                                   Grid.Row="1"/>
-                            <Label Text="{Binding ExpiryDate, StringFormat='{0:yyyy/MM/dd}'}" Margin="225,0,0,0"
-                                   Grid.Column="1"
-                                   Grid.Row="1"/>
-
-                            <Label Text="Barcode: " Grid.Row="2"
-                                   Grid.Column="1"/>
-                            <Label Text="{Binding Barcode}"
-                                   Grid.Row="2" Margin="60,0,0,0"
-                                   Grid.Column="1"/>
-
-                            <Label Text="{Binding Quantity}"
-                                   Grid.RowSpan="4"
-                                   Grid.Column="2"
-                                   FontSize="16" FontAttributes="Bold"
-                                   VerticalOptions="Center"
-                                   HorizontalTextAlignment="End"
-                                   HorizontalOptions="End"
-                                   Margin="0,0,10,0"
-                                   TextColor="#3498db"/>
-                        </Grid>
-                    </SwipeView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-
-        <ImageButton CornerRadius="10"
-                     WidthRequest="64"
-                     HeightRequest="64"
-                     Margin="0,0,24,48"
-                     Padding="5"
-                     VerticalOptions="End"
-                     HorizontalOptions="End"
-                     Background="#0984e3"
-                     Command="{Binding OpenScanBarcodePageCommand}">
-            <ImageButton.Source>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveDataCommand}">
+            <ToolbarItem.IconImageSource>
                 <FontImageSource FontFamily="IconFontTypes"
-                                 Glyph="{x:Static fontHelper:IconFont.Qr_code_scanner}"
+                                 Glyph="{x:Static fontHelper:IconFont.Check}"
                                  Size="100"/>
-            </ImageButton.Source>
-        </ImageButton>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
 
-        <Label x:Name="lblError" Text="{Binding ErrorMessage}" TextColor="Red"
-               VerticalOptions="End" HorizontalOptions="Center"
-               Margin="0,0,0,10"/>
+        <ToolbarItem Command="{Binding DeleteDataCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="IconFontTypes"
+                                 Glyph="{x:Static fontHelper:IconFont.Delete}"
+                                 Size="100"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <Grid BackgroundColor="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="265"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <VerticalStackLayout Spacing="10">
+            <Grid Background="White"
+                  HeightRequest="40"
+                  >
+                <Label Text="Mã kiểm kê" FontSize="16"
+                       VerticalOptions="Center"
+                       Margin="10,0,0,0" FontAttributes="Bold"/>
+                <Label Text="{Binding InventoryNo}" FontSize="16"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"
+                       HorizontalOptions="End"/>
+            </Grid>
+
+            <Grid Background="White"
+                  HeightRequest="40"
+                  >
+                <Label Text="Ngày kiểm kê" FontSize="16"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                <DatePicker Date="{Binding InventoryDate}" FontSize="16"
+                            VerticalOptions="Center"
+                            Margin="0,0,10,0"
+                            HorizontalOptions="End"/>
+            </Grid>
+
+            <Grid Background="White"
+                  HeightRequest="105"
+                  >
+                <Label Text="Ghi chú" FontSize="16"
+                       VerticalOptions="Start"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                <Editor Text="{Binding Note}" FontSize="16"
+                        VerticalOptions="Start"
+                        HeightRequest="90"
+                        VerticalTextAlignment="Start"
+                        Margin="10,15,10,0"
+                        HorizontalOptions="FillAndExpand"
+                        IsTextPredictionEnabled="True"
+                        />
+            </Grid>
+
+            <Grid Background="White"
+                  HeightRequest="40"
+                  >
+                <Label Text="Sản phẩm" FontSize="16"
+                       VerticalOptions="Center"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                <Label Text="{Binding DetailCount}" FontSize="16"
+                       VerticalOptions="Center"
+                       Margin="0,0,10,0"
+                       HorizontalOptions="End"/>
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1">
+            <CollectionView ItemsSource="{Binding InventoryDetails}" HorizontalScrollBarVisibility="Never">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout  Orientation="Vertical" ItemSpacing="1"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView Background="White"
+                                   Margin="0,0,0,0"
+                                   HeightRequest="65">
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                               BackgroundColor="#c0392b"
+                                               Command="{Binding DeleteDetailCommand, Source={RelativeSource AncestorType={x:Type viewModel:WarehouseInboundCheckingViewModel}}}"
+                                               CommandParameter="{Binding .}">
+                                        <SwipeItem.IconImageSource>
+                                            <FontImageSource FontFamily="IconFontTypes"
+                                                             Glyph="{x:Static fontHelper:IconFont.Delete}"
+                                                             Color="White"
+                                                             />
+                                        </SwipeItem.IconImageSource>
+                                    </SwipeItem>
+                                    <SwipeItem Text="Edit"
+                                               BackgroundColor="#27ae60"
+                                               Command="{Binding EditDetailCommand, Source={RelativeSource AncestorType={x:Type viewModel:WarehouseInboundCheckingViewModel}}}"
+                                               CommandParameter="{Binding .}">
+                                        <SwipeItem.IconImageSource>
+                                            <FontImageSource FontFamily="IconFontTypes"
+                                                             Glyph="{x:Static fontHelper:IconFont.Edit}"
+                                                             Color="White"/>
+                                        </SwipeItem.IconImageSource>
+                                    </SwipeItem>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2.5*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Rectangle WidthRequest="8"
+                                           Fill="#27ae60"
+                                           Grid.RowSpan="2"
+                                           HorizontalOptions="Start"
+                                           Margin="-1,-1,0,0"/>
+
+                                <Label Text="{Binding ProductName}"
+                                       FontSize="16"
+                                       Grid.Column="1"
+                                       TextColor="#3498db"
+                                       LineBreakMode="WordWrap"/>
+
+                                <Label Text="Barcode: " Grid.Row="2"
+                                       Grid.Column="1"/>
+                                <Label Text="{Binding Barcode}"
+                                       Grid.Row="2" Margin="60,0,0,0"
+                                       Grid.Column="1"/>
+
+                                <Label Text="Hạn dùng: "
+                                       Margin="220,0,0,0"
+                                       Grid.Column="1"
+                                       Grid.Row="1"/>
+                                <Label Text="{Binding ExpiryDate, StringFormat='{0:yyyy/MM}'}" Margin="290,0,0,0"
+                                       Grid.Column="1"
+                                       Grid.Row="1"/>
+
+                                <Label Text="{Binding Quantity}"
+                                       Grid.RowSpan="4"
+                                       Grid.Column="2"
+                                       FontSize="18" FontAttributes="Bold"
+                                       VerticalOptions="Center"
+                                       HorizontalTextAlignment="End"
+                                       HorizontalOptions="End"
+                                       Margin="0,0,10,0"
+                                       TextColor="#3498db"/>
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ImageButton CornerRadius="10"
+                         WidthRequest="64"
+                         HeightRequest="64"
+                         Margin="0,0,24,48"
+                         Padding="5"
+                         VerticalOptions="End"
+                         HorizontalOptions="End"
+                         Background="#0984e3"
+                         Command="{Binding OpenScanBarcodePageCommand}">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="IconFontTypes"
+                                     Glyph="{x:Static fontHelper:IconFont.Qr_code_scanner}"
+                                     Size="100"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+        </Grid>
     </Grid>
 
 </ContentPage>

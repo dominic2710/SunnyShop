@@ -28,6 +28,8 @@ namespace SellManagement.Api.Entities
         public virtual DbSet<TblSellOrderDetail> TblSellOrderDetails { get; set; }
         public virtual DbSet<TblVoucherNoManagement> TblVoucherNoManagements { get; set; }
         public virtual DbSet<TblProductInventory> TblProductInventories { get; set; }
+        public virtual DbSet<TblInventoryHead> TblInventoryHeads { get; set; }
+        public virtual DbSet<TblInventoryDetail> TblInventoryDetails { get; set; }
         //public virtual DbSet<TblOperationLog> TblOperationLogs { get; set; }
     }
 }

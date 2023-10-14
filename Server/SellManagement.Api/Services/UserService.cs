@@ -79,6 +79,7 @@ namespace SellManagement.Api.Services
                 Id = x.Id,
                 UserName= x.UserName,
                 UserRole= x.UserRole,
+                LoginId = x.LoginId,
             }).SingleOrDefault();
         }
 

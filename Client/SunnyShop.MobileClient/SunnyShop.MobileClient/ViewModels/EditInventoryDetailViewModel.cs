@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core.Platform;
 using SunnyShop.MobileClient.Models;
+using SunnyShop.MobileClient.Pages;
 using SunnyShop.MobileClient.Services.Product;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,8 @@ namespace SunnyShop.MobileClient.ViewModels
             {
                 if (SelectedInventoryDetail != null)
                 {
-                    await Shell.Current.GoToAsync($"WarehouseInboundCheckingPage?barcode={SelectedInventoryDetail.Barcode}&" +
+                    await Shell.Current.GoToAsync($"WarehouseInboundCheckingPage?sourcePage={nameof(EditInventoryDetailPage)}&" +
+                                                        $"barcode={SelectedInventoryDetail.Barcode}&" +
                                                         $"productCd={SelectedInventoryDetail.ProductCd}&" +
                                                         $"productName={SelectedInventoryDetail.ProductName}&" +
                                                         $"sapoProductId={SelectedInventoryDetail.SapoProductId}&" +

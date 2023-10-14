@@ -17,10 +17,7 @@ namespace SellManagement.Api.Helpers
 
         public string GetRequestUserId()
         {
-            if (_httpContext == null)
-                return "";
-
-            return ((TblUser)_httpContext.HttpContext.Items["User"]).LoginId;
+            return GetRequestUser().LoginId;
         }
 
         public Functions.User GetRequestUser()
